@@ -1,0 +1,24 @@
+{
+  "name": "Cloud Desktop B",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [6080, 8080],
+  "portsAttributes": {
+    "6080": {
+      "label": "noVNC Desktop",
+      "onAutoForward": "silent",
+      "visibility": "public"
+    },
+    "8080": {
+      "label": "Desktop API",
+      "onAutoForward": "silent",
+      "visibility": "public"
+    }
+  },
+  "postStartCommand": "bash /opt/desktop/start.sh > /tmp/desktop.log 2>&1 &",
+  "remoteEnv": {
+    "DISPLAY": ":1",
+    "DESKTOP_ID": "B"
+  }
+}
